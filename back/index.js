@@ -7,7 +7,10 @@ import cors from "cors"
 import clientRoutes  from "./routes/client.js"
 import generalRoutes from "./routes/general.js"
 import managementRoutes from "./routes/management.js"
-import salesRoutes  from  "./routes/sales.js"
+import salesRoutes from "./routes/sales.js"
+import mongoose from "mongoose"
+import User from "./models/user.js"
+import {dataUser} from "./data/index.js"
 
 
 dotenv.config()
@@ -26,3 +29,10 @@ app.use("/general", generalRoutes)
 app.use("/management",managementRoutes)
 app.use("/sales",salesRoutes)
 
+
+const port = process.env.PORT || 5000
+mongoose.connect(process.env.DB_URL).then(() => {
+    app.listen(port, () => console.log(`server started at port ${port}`))
+    // User.insertMany(dataUser)
+    
+}).catch((err)=>console.log(err))
