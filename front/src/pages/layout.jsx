@@ -22,7 +22,7 @@ function Layout() {
                 openSidebar={openSidebar}
                 setOpenSidebar={setOpenSidebar}
             />
-            <Box>
+            <Box flexGrow="1">
                 <Navbar
                     user={data || {}}
                     openSidebar={openSidebar}
