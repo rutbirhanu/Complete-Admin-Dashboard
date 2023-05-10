@@ -10,7 +10,9 @@ import managementRoutes from "./routes/management.js"
 import salesRoutes from "./routes/sales.js"
 import mongoose from "mongoose"
 import User from "./models/user.js"
-import {dataUser} from "./data/index.js"
+import Product from "./models/product.js"
+import ProductStat from "./models/productStat.js"
+import {dataUser, dataProduct, dataProductStat} from "./data/index.js"
 
 
 dotenv.config()
@@ -34,5 +36,7 @@ const port = process.env.PORT || 5000
 mongoose.connect(process.env.DB_URL).then(() => {
     app.listen(port, () => console.log(`server started at port ${port}`))
     // User.insertMany(dataUser)
+    // Product.insertMany(dataProduct)
+    // ProductStat.insertMany(dataProductStat)
     
 }).catch((err)=>console.log(err))
