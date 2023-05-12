@@ -56,7 +56,7 @@ function Sidebar({ drawerWidth, openSidebar, setOpenSidebar, isNonMobile, user }
                                         </Typography>
                                     )
                                 }
-                                const lowerText = item.text.toLowerCase
+                                const lowerText = item.text.toLowerCase()
                                 return (
                                     <ListItem disablePadding key={item.text}>
                                         <ListItemButton onClick={() => {

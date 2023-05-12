@@ -1,14 +1,23 @@
-import Product from "../models/product"
-import ProductStat from "../models/productStat"
-
+import Product from "../models/product.js"
+import ProductStat from "../models/productStat.js"
 
 export const getProducts = async (req, res) => {
    
     try {
-    const products= await Product.find()
-        
-        
-        
+        const products = await Product.find()
+        const productWithStat = await Promise.all(
+            products.map(async (product) => {
+                const stat = await ProductStat.find({
+                    productId:product._id
+                })
+                return {
+                    ...product._doc,
+                    stat
+                }
+            })
+        )   
+        res.status(200).json(productWithStat)
+       
     }
     catch (err) {
         res.status(404).json({message:err})
