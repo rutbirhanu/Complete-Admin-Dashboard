@@ -1,5 +1,6 @@
 import Product from "../models/product.js"
 import ProductStat from "../models/productStat.js"
+import User from "../models/user.js"
 
 export const getProducts = async (req, res) => {
 
@@ -24,3 +25,15 @@ export const getProducts = async (req, res) => {
     }
 }
 
+
+export const getCustomers = async (req, res) => {
+    
+    try {
+        const customers = await User.find({ role: "user" }).select("-password")
+        res.status(200).json(customers)
+    }
+
+    catch (err) {
+        res.status(404).json({message:err})
+    }
+}

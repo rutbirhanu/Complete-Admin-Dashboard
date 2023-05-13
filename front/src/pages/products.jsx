@@ -52,6 +52,12 @@ const Product = ({
             unmountOnExit
             sx={{ color: theme.palette.neutral[300] }}
         >
+            <CardContent>
+                <Typography> id:{_id}</Typography>
+                <Typography> Supply Left: {supply}</Typography>
+                <Typography> Yearly Sales This Year:{stat.yearlSalesTotal}</Typography>
+                <Typography> Yearly Units Sold This Year: {stat.yearlyTotalSoldUnits}</Typography>
+            </CardContent>
 
         </Collapse>
 
@@ -62,24 +68,32 @@ const Product = ({
 function Products() {
     const { data, isLoading } = useGetProductsQuery()
     const isNonMobile = useMediaQuery("(min-width:1000px)")
-    console.log(data)
+
     return (
         < Box m="1.5rem  2.5rem">
             <Header title="PRODUCTS" subtitle="See your list of products" />
-            {data || isLoading ? (
-                <Box mt="20px" display="grid" gridTemplateColumns="repeat(4,minmax(0,1fr"
+            {data ? (
+                <Box mt="20px" display="grid" gridTemplateColumns="repeat(4,minmax(0,1fr))"
                     rowGap="20px"
-                    columGap="1.33%"
+                    columnGap="1.33%"
                     justifyContent="space-between"
                     sx={{
                         "& > div": {
                             gridColumn: isNonMobile ? undefined : "span 4"
                         }
                     }}>
-                    
-                    {data.map((singleData) => (
-                        <Product key={singleData._id} _id={singleData._id} name={singleData.name} description={singleData.description}
-                            supply={singleData.supply} price={singleData.price} rating={singleData.rating}
+
+                    {data.map(({ _id,
+                        name,
+                        description,
+                        price,
+                        rating,
+                        category,
+                        supply,
+                        stat }) => (
+                        <Product key={_id} _id={_id} name={name} description={description}
+                            supply={supply} price={price} rating={rating} category={category}
+                            stat={stat}
                         />
                     )
                     )}
