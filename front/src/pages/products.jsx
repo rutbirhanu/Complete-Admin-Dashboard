@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box, Button, Card, CardActions, CardContent, Collapse, Rating, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useGetProductsQuery } from "../state/api"
 import Header from "../components/header"
@@ -66,7 +67,7 @@ const Product = ({
 
 
 function Products() {
-    const { data, isLoading } = useGetProductsQuery()
+    const { data} = useGetProductsQuery()
     const isNonMobile = useMediaQuery("(min-width:1000px)")
 
     return (
