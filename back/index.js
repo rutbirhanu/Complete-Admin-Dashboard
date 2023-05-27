@@ -12,7 +12,8 @@ import mongoose from "mongoose"
 import User from "./models/user.js"
 import Product from "./models/product.js"
 import ProductStat from "./models/productStat.js"
-import {dataUser, dataProduct, dataProductStat} from "./data/index.js"
+import Transaction from "./models/transaction.js"
+import {dataUser, dataProduct, dataProductStat,dataTransaction } from "./data/index.js"
 
 
 dotenv.config()
@@ -38,5 +39,7 @@ mongoose.connect(process.env.DB_URL).then(() => {
     // User.insertMany(dataUser)
     // Product.insertMany(dataProduct)
     // ProductStat.insertMany(dataProductStat)
+    // Transaction.insertMany(dataTransaction)
+
     
 }).catch((err)=>console.log(err))

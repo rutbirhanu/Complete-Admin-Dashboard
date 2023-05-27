@@ -67,7 +67,7 @@ const Product = ({
 
 
 function Products() {
-    const { data} = useGetProductsQuery()
+    const { data, isLoading} = useGetProductsQuery()
     const isNonMobile = useMediaQuery("(min-width:1000px)")
 
     return (
